@@ -4,12 +4,12 @@ $page_title = 'Idiomatch - Jelajahi Idiom per Unit';
 
 // Ambil 1 idiom populer acak
 $popular_sql = "SELECT idioms.*, units.name AS unit_name FROM idioms JOIN units ON idioms.unit_id = units.id ORDER BY RAND() LIMIT 1";
-$popular_result = $dbconn->query($popular_sql);
+$popular_result = $conn_string->query($popular_sql);
 $popular_idiom = $popular_result->fetch_assoc();
 
 // Ambil SEMUA idiom dan unit, diurutkan berdasarkan unit
 $all_idioms_sql = "SELECT idioms.*, units.name AS unit_name, units.id as unit_id_val FROM idioms JOIN units ON idioms.unit_id = units.id ORDER BY units.id, idioms.idiom ASC";
-$all_idioms_result = $dbconn->query($all_idioms_sql);
+$all_idioms_result = $conn_string->query($all_idioms_sql);
 
 // Kelompokkan idiom berdasarkan unitnya
 $units_with_idioms = [];
@@ -94,7 +94,7 @@ require_once 'includes/header.php';
 
 
 <?php 
-$dbconn->close();
+$conn_string->close();
 require_once 'includes/footer.php'; 
 ?>
 
