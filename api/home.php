@@ -2,7 +2,7 @@
 // api/home.php
 
 // Sertakan file koneksi database PostgreSQL
-require_once 'db.php';
+require_once 'includes/db.php';
 
 // Inisialisasi array untuk menampung data
 $popular_idiom = null;
