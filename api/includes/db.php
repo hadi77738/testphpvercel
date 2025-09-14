@@ -1,18 +1,46 @@
 <?php
-// Pengaturan Database
-$db_host = 'localhost'; // atau sesuaikan dengan host Anda
-$db_user = 'root';      // atau sesuaikan dengan username database Anda
-$db_pass = '';          // atau sesuaikan dengan password database Anda
-$db_name = 'idiomatch_db'; // atau sesuaikan dengan nama database Anda
+// Informasi koneksi dari detail Supabase Anda
+$host = 'aws-1-ap-southeast-1.pooler.supabase.com';
+$port = '5432';
+$dbname = 'postgres';
+$user = 'postgres.ljveqfmifeqquebjvwau';
+$password = 'sugihmanik1';
 
-// Membuat Koneksi
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+// Membuat string koneksi untuk PostgreSQL, tambahkan sslmode=require
+$conn_string = "host={$host} port={$port} dbname={$dbname} user={$user} password={$password} sslmode=require";
 
-// Cek Koneksi
-if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+// Mencoba terhubung ke database
+$dbconn = pg_connect($conn_string);
+
+// Memeriksa apakah koneksi berhasil atau gagal
+if (!$dbconn) {
+    // Koneksi gagal, tampilkan pesan error
+    die("Error: Tidak dapat terhubung ke database PostgreSQL.");
+} else {
+    // Koneksi berhasil
+    echo "<h3>Berhasil terhubung ke database Supabase!</h3>";
+
+    // Contoh query untuk mengambil data dari tabel 'idioms'
+    $query = 'SELECT idiom, meaning_id FROM idioms LIMIT 5';
+
+    $result = pg_query($dbconn, $query);
+
+    // Memeriksa apakah query berhasil dijalankan
+    if (!$result) {
+        echo "Terjadi error saat menjalankan query.<br>";
+        exit;
+    }
+
+    // Menampilkan hasil query
+    echo "<h4>Menampilkan 5 data pertama dari tabel 'idioms':</h4>";
+    echo "<ul>";
+    while ($row = pg_fetch_assoc($result)) {
+        echo "<li><strong>" . htmlspecialchars($row['idiom']) . ":</strong> " . htmlspecialchars($row['meaning_id']) . "</li>";
+    }
+    echo "</ul>";
+
+    // Menutup koneksi database
+    pg_close($dbconn);
 }
-
-// Mengatur karakter set ke utf8mb4 untuk mendukung berbagai karakter
-$conn->set_charset("utf8mb4");
 ?>
+
