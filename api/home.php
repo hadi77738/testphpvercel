@@ -48,7 +48,7 @@ if ($dbconn) {
 }
 
 // Sertakan header
-require_once 'header.php';
+require_once 'includes/header.php';
 ?>
 
 <!-- Bagian Pencarian -->
@@ -108,5 +108,5 @@ require_once 'header.php';
 
 <?php
 // Sertakan footer
-require_once 'footer.php';
+require_once 'includes/footer.php';
 ?>
