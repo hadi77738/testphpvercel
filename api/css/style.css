@@ -1,0 +1,763 @@
+/* =================================================================
+   0. Universal Box Sizing
+   ================================================================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* =================================================================
+   1. Konfigurasi Dasar & Variabel
+   ================================================================= */
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #50E3C2;
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg-color: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 80px; /* Ruang untuk navbar fixed */
+}
+
+/* =================================================================
+   2. Navigasi / Header
+   ================================================================= */
+.navbar {
+    background-color: white;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.navbar .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.navbar .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* =================================================================
+   3. Form Pencarian
+   ================================================================= */
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+}
+
+.search-button {
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* =================================================================
+   4. Konten Utama (Kartu, Judul, Placeholder)
+   ================================================================= */
+.results-section {
+    margin-top: 20px;
+}
+
+.results-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.idiom-card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.unit-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.idiom-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    padding-right: 100px;
+}
+
+.idiom-card h4 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.example-quote {
+    background-color: #f9f9f9;
+    border-left: 4px solid var(--secondary-color);
+    padding: 10px 15px;
+    margin: 10px 0;
+}
+
+.example-quote p {
+    margin: 0;
+}
+
+.example-quote footer {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.conversation pre {
+    background-color: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+}
+
+.placeholder {
+    background-color: var(--card-bg-color);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 2px dashed #ddd;
+}
+
+/* =================================================================
+   5. Accordion Unit Explorer
+   ================================================================= */
+.unit-explorer {
+    margin-top: 40px;
+}
+
+.unit-accordion {
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.unit-header {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 18px 20px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unit-header:hover {
+    background-color: #3a82d2;
+}
+
+.unit-content {
+    padding: 0;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.idiom-item-btn {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fdfdfd;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.idiom-item-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* =================================================================
+   6. Popup / Modal
+   ================================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {transform: scale(0.95); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+.modal-close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: black;
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+    padding-right: 0;
+}
+.modal-header .unit-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* =================================================================
+   7. Footer
+   ================================================================= */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* =================================================================
+   8. Tampilan Mobile (Responsif)
+   ================================================================= */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        padding-top: 75px;
+    }
+
+    .navbar .hamburger {
+        display: block;
+    }
+
+    .navbar .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar .nav-links.active {
+        display: flex;
+    }
+
+    .navbar .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar .nav-links a {
+        padding: 15px 0;
+        display: block;
+        width: 100%;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .idiom-card h3 {
+        padding-right: 0;
+    }
+
+    .unit-tag {
+        position: static;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+    
+    .modal-header .unit-tag {
+        position: static;
+        margin-top: 5px;
+    }
+}
+
+/* --- Gaya untuk Halaman Kuis --- */
+.quiz-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+.quiz-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.quiz-title {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #555;
+}
+
+.question-area {
+    margin-bottom: 25px;
+}
+
+.question-area p {
+    margin: 0;
+    color: #777;
+}
+
+.question-area h2 {
+    font-size: 1.8rem;
+    margin-top: 5px;
+    color: var(--text-color);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.option-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:not(:disabled):hover {
+    background-color: #e9e9e9;
+    border-color: #ccc;
+}
+
+.option-btn.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.option-btn.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.feedback {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.feedback.correct { color: #155724; }
+.feedback.incorrect { color: #721c24; }
+
+.quiz-button {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+
+.quiz-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.final-score-display {
+    font-size: 4rem;
+    color: var(--primary-color);
+}
+
+@media (min-width: 600px) {
+    .options-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Gaya untuk Halaman Login/Auth --- */
+.auth-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
+}
+
+.auth-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.auth-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.auth-card p {
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box; /* Penting untuk mencegah overflow */
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.form-error-msg {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* --- Gaya untuk Halaman Admin --- */
+.admin-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.admin-actions .btn-admin-action {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+.btn-admin-action.btn-add {
+    background-color: var(--primary-color);
+}
+.btn-admin-action.btn-add:hover {
+    background-color: #3a82d2;
+    transform: translateY(-2px);
+}
+
+/* --- Notifikasi --- */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-align: center;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* --- Search Bar Admin --- */
+.admin-search-bar input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+.admin-search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* --- Grid Kartu Idiom --- */
+.idiom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.admin-idiom-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-unit-tag {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.card-idiom-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.card-idiom-meaning {
+    color: #666;
+    flex-grow: 1; /* Mendorong tombol ke bawah */
+    margin-bottom: 20px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto; /* Memastikan tombol selalu di bawah */
+}
+
+.btn-card-action {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.btn-edit {
+    background-color: #f0f0f0;
+    color: #333;
+}
+.btn-edit:hover {
+    background-color: #e0e0e0;
+}
+.btn-delete {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.btn-delete:hover {
+    background-color: #f1c1c6;
+}
